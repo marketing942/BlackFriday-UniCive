@@ -11,7 +11,6 @@ quase preto, dourado do símbolo, Lexend + Montserrat (com itálico Playfair nos
 | O quê | Onde |
 |---|---|
 | ⚠ Data (09/11 — confirmar) | `CONFIG.inicio` no `script.js` + textos "09/11" no `index.html` |
-| ⚠ Link do grupo do WhatsApp — vazio, o inscrito vai para o YouTube | `CONFIG.grupoWhatsApp` |
 | Aba da planilha (hoje `BLACK_FRIDAY_UNICIVE`) | `CONFIG.sheetAba` |
 | Cursos da seção "lacrados" | seção `#cursos` |
 

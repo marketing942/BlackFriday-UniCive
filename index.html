@@ -168,6 +168,10 @@
         </div>
 
         <div class="inscricao__card">
+          <!-- o diploma: o card chega enrolado entre dois canudos e desenrola -->
+          <i class="canudo canudo--topo" aria-hidden="true"></i>
+          <i class="canudo canudo--pe" aria-hidden="true"></i>
+          <i class="diploma-fita" aria-hidden="true"></i>
           <div class="inscricao__topo">
             <span class="inscricao__tag">Lista VIP · gratuita</span>
             <span class="inscricao__tempo" id="formTempo" aria-hidden="true">--</span>
@@ -268,6 +272,8 @@
     <a class="mec__selo" data-reveal href="https://emec.mec.gov.br/emec/consulta-cadastro/detalhes-ies/d96957f455f6405d14c6542552b0f6eb/MzY0OQ==" target="_blank" rel="noopener noreferrer" aria-label="Nota máxima 5 no MEC — consultar no e-MEC">
       <img src="assets/nota-maxima.webp" alt="Nota máxima 5 no MEC" width="882" height="485" loading="lazy" decoding="async">
       <span class="mec__consulta">Consultar no e-MEC ↗</span>
+      <!-- carimbo: bate sobre o selo quando a seção entra na tela -->
+      <span class="carimbo-mec" aria-hidden="true"><small>Avaliação</small><b>Nota 5</b><small>MEC</small></span>
     </a>
     <div data-reveal>
       <span class="eyebrow">Por que a Unicive</span>
@@ -282,9 +288,8 @@
 </section>
 
 <!-- ================= MURAL DE FORMATURA =================
-     Fotos reais de formados, em polaroides presas no mural. Duas faixas
-     em sentidos opostos, cada foto com inclinação própria (--r). Cada
-     faixa repete o conjunto três vezes e anda 1/3 da largura. -->
+     Fotos reais de formados, em polaroides que caem no mural uma a uma
+     (--d = ordem) e ficam presas pela fita, cada uma com inclinação (--r). -->
 <section class="section section--alt mural" id="formados" aria-labelledby="formados-title">
   <div class="container">
     <div class="section__head" data-reveal>
@@ -292,40 +297,17 @@
       <h2 class="section__title" id="formados-title">Eles já estão com o <span class="gold">diploma na mão</span></h2>
     </div>
   </div>
-  <div class="polaroides" data-reveal>
-    <ul class="polaroides__faixa" role="list">
-      <li class="polaroide" style="--r:-0.4deg;--y:-3px"><img src="assets/formados/formado-01.webp" width="640" height="427" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Diploma na mão!</span></li>
-      <li class="polaroide" style="--r:-3.6deg;--y:7px"><img src="assets/formados/formado-02.webp" width="480" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Turma Unicive</span></li>
-      <li class="polaroide" style="--r:-4.9deg;--y:0px"><img src="assets/formados/formado-04.webp" width="427" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Nível superior ✓</span></li>
-      <li class="polaroide" style="--r:4.0deg;--y:-8px"><img src="assets/formados/formado-06.webp" width="359" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Turma Unicive</span></li>
-      <li class="polaroide" style="--r:0.5deg;--y:2px"><img src="assets/formados/formado-08.webp" width="426" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Diploma na mão!</span></li>
-      <li class="polaroide" style="--r:-4.6deg;--y:-2px" aria-hidden="true"><img src="assets/formados/formado-01.webp" width="640" height="427" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Diploma na mão!</span></li>
-      <li class="polaroide" style="--r:2.0deg;--y:-1px" aria-hidden="true"><img src="assets/formados/formado-02.webp" width="480" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Turma Unicive</span></li>
-      <li class="polaroide" style="--r:2.3deg;--y:-7px" aria-hidden="true"><img src="assets/formados/formado-04.webp" width="427" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Nível superior ✓</span></li>
-      <li class="polaroide" style="--r:-2.6deg;--y:-8px" aria-hidden="true"><img src="assets/formados/formado-06.webp" width="359" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Turma Unicive</span></li>
-      <li class="polaroide" style="--r:0.1deg;--y:8px" aria-hidden="true"><img src="assets/formados/formado-08.webp" width="426" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Diploma na mão!</span></li>
-      <li class="polaroide" style="--r:0.9deg;--y:5px" aria-hidden="true"><img src="assets/formados/formado-01.webp" width="640" height="427" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Diploma na mão!</span></li>
-      <li class="polaroide" style="--r:-1.2deg;--y:5px" aria-hidden="true"><img src="assets/formados/formado-02.webp" width="480" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Turma Unicive</span></li>
-      <li class="polaroide" style="--r:-4.0deg;--y:-4px" aria-hidden="true"><img src="assets/formados/formado-04.webp" width="427" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Nível superior ✓</span></li>
-      <li class="polaroide" style="--r:1.7deg;--y:5px" aria-hidden="true"><img src="assets/formados/formado-06.webp" width="359" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Turma Unicive</span></li>
-      <li class="polaroide" style="--r:-0.8deg;--y:-8px" aria-hidden="true"><img src="assets/formados/formado-08.webp" width="426" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Diploma na mão!</span></li>
-    </ul>
-    <ul class="polaroides__faixa polaroides__faixa--volta" role="list">
-      <li class="polaroide" style="--r:-2.3deg;--y:-6px"><img src="assets/formados/formado-01.webp" width="640" height="427" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Formado com orgulho</span></li>
-      <li class="polaroide" style="--r:-2.2deg;--y:6px"><img src="assets/formados/formado-06.webp" width="359" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Agora é oficial!</span></li>
-      <li class="polaroide" style="--r:-3.0deg;--y:8px"><img src="assets/formados/formado-04.webp" width="427" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Formada com orgulho</span></li>
-      <li class="polaroide" style="--r:3.8deg;--y:-9px" aria-hidden="true"><img src="assets/formados/formado-03.webp" width="640" height="427" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Diploma na mão!</span></li>
-      <li class="polaroide" style="--r:-1.2deg;--y:-0px" aria-hidden="true"><img src="assets/formados/formado-08.webp" width="426" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Turma Unicive</span></li>
-      <li class="polaroide" style="--r:-4.8deg;--y:-2px" aria-hidden="true"><img src="assets/formados/formado-01.webp" width="640" height="427" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Formado com orgulho</span></li>
-      <li class="polaroide" style="--r:4.1deg;--y:-8px" aria-hidden="true"><img src="assets/formados/formado-06.webp" width="359" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Agora é oficial!</span></li>
-      <li class="polaroide" style="--r:1.0deg;--y:-8px" aria-hidden="true"><img src="assets/formados/formado-04.webp" width="427" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Formada com orgulho</span></li>
-      <li class="polaroide" style="--r:0.8deg;--y:8px" aria-hidden="true"><img src="assets/formados/formado-03.webp" width="640" height="427" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Diploma na mão!</span></li>
-      <li class="polaroide" style="--r:-3.0deg;--y:-10px" aria-hidden="true"><img src="assets/formados/formado-08.webp" width="426" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Turma Unicive</span></li>
-      <li class="polaroide" style="--r:-4.2deg;--y:1px" aria-hidden="true"><img src="assets/formados/formado-01.webp" width="640" height="427" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Formado com orgulho</span></li>
-      <li class="polaroide" style="--r:-4.8deg;--y:-8px" aria-hidden="true"><img src="assets/formados/formado-06.webp" width="359" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Agora é oficial!</span></li>
-      <li class="polaroide" style="--r:-0.0deg;--y:8px" aria-hidden="true"><img src="assets/formados/formado-04.webp" width="427" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Formada com orgulho</span></li>
-      <li class="polaroide" style="--r:-0.8deg;--y:-2px" aria-hidden="true"><img src="assets/formados/formado-03.webp" width="640" height="427" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Diploma na mão!</span></li>
-      <li class="polaroide" style="--r:1.4deg;--y:-8px" aria-hidden="true"><img src="assets/formados/formado-08.webp" width="426" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Turma Unicive</span></li>
+  <!-- as fotos caem uma a uma quando a seção aparece e ficam presas pela fita -->
+  <div class="container">
+    <ul class="mural__quadro" role="list" data-reveal>
+      <li class="polaroide" style="--r:-3.2deg;--y:-8px;--d:0"><img src="assets/formados/formado-01.webp" width="640" height="427" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Diploma na mão!</span></li>
+      <li class="polaroide" style="--r:-1.2deg;--y:-7px;--d:1"><img src="assets/formados/formado-02.webp" width="480" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Turma Unicive</span></li>
+      <li class="polaroide" style="--r:-5.2deg;--y:-2px;--d:2"><img src="assets/formados/formado-04.webp" width="427" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Nível superior ✓</span></li>
+      <li class="polaroide" style="--r:5.0deg;--y:6px;--d:3"><img src="assets/formados/formado-03.webp" width="640" height="427" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Formado com orgulho</span></li>
+      <li class="polaroide" style="--r:3.2deg;--y:-6px;--d:4"><img src="assets/formados/formado-06.webp" width="359" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Turma Unicive</span></li>
+      <li class="polaroide" style="--r:0.4deg;--y:-4px;--d:5"><img src="assets/formados/formado-05.webp" width="427" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Agora é oficial!</span></li>
+      <li class="polaroide" style="--r:-3.9deg;--y:-8px;--d:6"><img src="assets/formados/formado-08.webp" width="426" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Diploma na mão!</span></li>
+      <li class="polaroide" style="--r:-3.4deg;--y:9px;--d:7"><img src="assets/formados/formado-07.webp" width="359" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Formada com orgulho</span></li>
     </ul>
   </div>
 </section>
@@ -438,6 +420,9 @@
       </div>
 
       <div class="footer__social">
+        <a href="https://www.instagram.com/unicive.caruaru/" target="_blank" rel="noopener" aria-label="Instagram da Unicive Caruaru">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9s.7.8.9 1.4c.1.4.3 1 .4 2.2 0 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4s-.8.7-1.4.9c-.4.1-1 .3-2.2.4-1.3 0-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.1-.4-.3-1-.4-2.2 0-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4s.8-.7 1.4-.9c.4-.1 1-.3 2.2-.4 1.3 0 1.7-.1 4.9-.1zM12 0C8.7 0 8.3 0 7 .1 5.7.1 4.8.3 4.1.6c-.8.3-1.4.7-2 1.4-.7.6-1.1 1.2-1.4 2C.3 4.7.1 5.6.1 6.9 0 8.2 0 8.6 0 12s0 3.8.1 5.1c0 1.3.2 2.2.5 2.9.3.8.7 1.4 1.4 2 .6.7 1.2 1.1 2 1.4.7.3 1.6.5 2.9.5 1.3.1 1.7.1 5.1.1s3.8 0 5.1-.1c1.3 0 2.2-.2 2.9-.5.8-.3 1.4-.7 2-1.4.7-.6 1.1-1.2 1.4-2 .3-.7.5-1.6.5-2.9.1-1.3.1-1.7.1-5.1s0-3.8-.1-5.1c0-1.3-.2-2.2-.5-2.9-.3-.8-.7-1.4-1.4-2-.6-.7-1.2-1.1-2-1.4-.7-.3-1.6-.5-2.9-.5C15.8 0 15.4 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-10.4a1.4 1.4 0 1 1-2.9 0 1.4 1.4 0 0 1 2.9 0z"/></svg>
+        </a>
         <a href="https://www.youtube.com/@cppemconcursos" target="_blank" rel="noopener" aria-label="YouTube">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5C0 8.4 0 12 0 12s0 3.6.5 5.5a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.5.5-5.5s0-3.6-.5-5.5zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
         </a>
@@ -462,6 +447,7 @@
 </div>
 
 <canvas class="brasas" id="brasas" aria-hidden="true"></canvas>
+<div class="capelos" id="capelos" aria-hidden="true"></div>
 
 <script src="script.js"></script>
 </body>

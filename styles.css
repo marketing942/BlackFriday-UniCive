@@ -981,3 +981,134 @@ html.fase-simbolo .leao__halo { animation: halo-acende 1.3s var(--ease) .7s both
 /* títulos de seção: não deixar palavra solta numa linha */
 .section__title { text-wrap: balance; }
 .curso__tag { white-space: nowrap; }
+
+/* =========================================================
+   EFEITOS DE FORMATURA
+   1 capelos voando · 2 diploma desenrolando · 3 folha crescendo
+   5 carimbo do MEC · 6 polaroides caindo no mural
+   ========================================================= */
+
+/* ---------- 3 · a folha do símbolo nasce como broto e cresce ----------
+   Substitui o voo da folha: ela cresce a partir do "talo" (canto de
+   baixo à esquerda), passa um pouco do tamanho e assenta. */
+.peca--folha { transform-origin: 0% 100%; }
+html.fase-simbolo .peca--folha { animation: folha-cresce 1.25s cubic-bezier(.3, 1.3, .5, 1) .45s both; }
+@keyframes folha-cresce {
+  0%   { opacity: 0; transform: scale(.04) rotate(-28deg); }
+  12%  { opacity: 1; }
+  70%  { transform: scale(1.06) rotate(2deg); }
+  100% { opacity: 1; transform: none; }
+}
+html.fase-simbolo .marca-uni .bf__leao { animation: encaixe .8s var(--ease) 1.55s both; }
+html.fase-simbolo .marca-uni__nome { animation: sobe .7s var(--freada) 1.6s both; }
+
+/* ---------- 2 · o card chega enrolado como diploma e desenrola ----------
+   O card é recortado de 50% (fechado) até 0; os dois canudos acompanham
+   as bordas do recorte. A fita do meio cai antes de desenrolar. */
+.inscricao__card { isolation: isolate; }
+.canudo {
+  position: absolute; left: -12px; right: -12px; height: 18px; z-index: 5; border-radius: 9px;
+  background: linear-gradient(180deg, #7a5208 0%, #ffd99a 30%, var(--gold-hot) 50%, #b07a12 85%, #6a4706 100%);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, .5);
+  pointer-events: none;
+}
+.canudo::before, .canudo::after {   /* as pontas do canudo */
+  content: ""; position: absolute; top: -3px; width: 14px; height: 24px; border-radius: 6px;
+  background: linear-gradient(180deg, #4d3404, #c9932a 45%, #4d3404);
+}
+.canudo::before { left: -6px; }
+.canudo::after  { right: -6px; }
+.canudo--topo { top: -9px; }
+.canudo--pe   { bottom: -9px; }
+.diploma-fita {
+  position: absolute; left: 50%; top: 50%; z-index: 6; width: 34px; height: 54px; margin: -27px 0 0 -17px;
+  background: linear-gradient(90deg, #8a1424, #d63a4c 50%, #8a1424);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .45);
+  opacity: 0; pointer-events: none;
+}
+html.is-revelado .inscricao__card { animation: desenrola 1.05s cubic-bezier(.65, 0, .3, 1) .75s both; }
+html.is-revelado .canudo--topo { animation: canudo-topo 1.05s cubic-bezier(.65, 0, .3, 1) .75s both; }
+html.is-revelado .canudo--pe   { animation: canudo-pe 1.05s cubic-bezier(.65, 0, .3, 1) .75s both; }
+html.is-revelado .diploma-fita { animation: fita-cai .75s var(--ease) .1s both; }
+html.is-revelado .selo-card    { animation: sobe .6s var(--freada) 1.6s both; }
+@keyframes desenrola {
+  from { clip-path: inset(calc(50% - 9px) -30px calc(50% - 9px) -30px); }
+  to   { clip-path: inset(-30px -30px -30px -30px); }
+}
+@keyframes canudo-topo { from { top: calc(50% - 18px); } to { top: -9px; } }
+@keyframes canudo-pe   { from { bottom: calc(50% - 18px); } to { bottom: -9px; } }
+@keyframes fita-cai {
+  0%   { opacity: 1; transform: none; }
+  45%  { opacity: 1; transform: translateY(-6px) rotate(-6deg); }
+  100% { opacity: 0; transform: translateY(70px) rotate(24deg); }
+}
+/* depois de aberto, os canudos ficam como acabamento do diploma, mais finos */
+.canudo { transition: opacity .4s; }
+
+/* ---------- 5 · carimbo do MEC ---------- */
+.mec__selo { position: relative; }
+.carimbo-mec {
+  position: absolute; right: -14px; top: -18px; width: 108px; aspect-ratio: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.05;
+  border-radius: 50%; border: 3px solid var(--gold-hot);
+  box-shadow: inset 0 0 0 4px rgba(4, 20, 15, .9), inset 0 0 0 6px var(--gold-hot), 0 10px 24px rgba(0, 0, 0, .45);
+  background: radial-gradient(circle, rgba(4, 30, 22, .96), rgba(2, 14, 10, .96));
+  color: var(--gold-hot); text-transform: uppercase; text-align: center;
+  transform: rotate(-14deg); opacity: 0;
+  /* textura de tinta de carimbo */
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='f'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.4 1.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='f'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.4 1.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+}
+.carimbo-mec small { font-size: .56rem; font-weight: 800; letter-spacing: .18em; }
+.carimbo-mec b { font-family: var(--display); font-weight: 900; font-size: 1.3rem; letter-spacing: .02em; margin: .15rem 0; }
+.mec__selo.is-in .carimbo-mec { animation: carimba .5s cubic-bezier(.5, 0, .75, 0) .7s forwards; }
+.mec__selo.is-in { animation: baque-selo .4s var(--ease) 1.2s; }
+@keyframes carimba {
+  0%   { opacity: 0; transform: rotate(-30deg) scale(2.6); }
+  100% { opacity: 1; transform: rotate(-14deg) scale(1); }
+}
+@keyframes baque-selo {
+  0%, 100% { translate: 0 0; }
+  30% { translate: 0 4px; }
+  60% { translate: 0 -1px; }
+}
+
+/* ---------- 6 · polaroides caindo no mural ---------- */
+.mural__quadro {
+  list-style: none; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: 2.4rem 1.6rem; padding: 1rem 0 .5rem;
+  --foto: 210px;
+}
+html.js .mural__quadro[data-reveal] { opacity: 1; transform: none; }   /* quem anima são as fotos */
+.mural__quadro .polaroide { animation: none; }
+html.js .mural__quadro .polaroide { opacity: 0; }
+.mural__quadro.is-in .polaroide { animation: foto-cai .8s cubic-bezier(.3, 1.25, .55, 1) calc(var(--d) * 130ms) both; }
+@keyframes foto-cai {
+  0%   { opacity: 0; transform: translateY(calc(var(--y, 0px) - 140px)) rotate(calc(var(--r) + 18deg)) scale(1.18); }
+  25%  { opacity: 1; }
+  100% { opacity: 1; transform: translateY(var(--y, 0)) rotate(var(--r)); }
+}
+/* a fita só cola depois que a foto pousa */
+html.js .mural__quadro .polaroide::before { opacity: 0; transform: translateX(-50%) rotate(-4deg) scaleX(.2); }
+.mural__quadro.is-in .polaroide::before { animation: fita-cola .35s var(--ease) calc(var(--d) * 130ms + 650ms) forwards; }
+@keyframes fita-cola { to { opacity: 1; transform: translateX(-50%) rotate(-4deg) scaleX(1); } }
+
+/* ---------- 1 · capelos voando ---------- */
+.capelos { position: fixed; inset: 0; z-index: 350; pointer-events: none; overflow: hidden; }
+.capelo { position: absolute; left: 0; top: 0; width: var(--t, 64px); will-change: transform; }
+.capelo svg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .45)); }
+
+@media (max-width: 560px) {
+  .mural__quadro { --foto: 104px; gap: 1.3rem .7rem; }
+  .mural__quadro .polaroide { padding: 6px 6px 0; }
+  .mural__quadro .polaroide__legenda { font-size: .95rem; padding: .2rem .1rem .4rem; }
+  .mural__quadro .polaroide::before { width: 52px; height: 16px; top: -8px; }
+  .carimbo-mec { width: 86px; right: -6px; top: -14px; }
+  .carimbo-mec b { font-size: 1.05rem; }
+  .canudo { left: -8px; right: -8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .capelos, .canudo, .diploma-fita { display: none; }
+  .carimbo-mec { opacity: 1; }
+  html.js .mural__quadro .polaroide, html.js .mural__quadro .polaroide::before { opacity: 1; }
+}

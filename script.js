@@ -32,10 +32,9 @@
     sheetBase: "https://script.google.com/macros/s/AKfycbxdFplWVSfhTjvyIA7HIWb645xRjGNhBVhTdTf5UMjo0lSpW_A_jCuys0qB4uImKXPQ/exec",
     sheetAba:  "BLACK_FRIDAY_UNICIVE",
 
-    /* ⚠ PREENCHER: convite do grupo da Black (https://chat.whatsapp.com/...).
-       Vazio, o inscrito é levado para o canal do YouTube — o lead não se
-       perde, mas ele também não entra em grupo nenhum. */
-    grupoWhatsApp: "",
+    /* Para onde o inscrito vai depois do formulário: o link curto do grupo
+       da Black no WhatsApp. Vazio, ele seria levado para o canal do YouTube. */
+    grupoWhatsApp: "https://links.cppem.com.br/grupo-bf26-unicive",
 
     /* Opcional: o link do vídeo agendado da live no YouTube. Preenchido, o
        botão "Inscrever no canal" vira "Ativar lembrete" e aponta para ele,
@@ -874,6 +873,42 @@
     acordar();
   }
 
+  /* =========================================================
+     CAPELOS VOANDO
+     Capelos lançados do pé da tela, sobem girando e caem — no fim da
+     abertura e quando alguém entra na lista VIP. Web Animations API:
+     três quadros com easing por trecho (sobe freando, cai acelerando).
+     ========================================================= */
+  var CAPELO_SVG = '<svg viewBox="0 0 100 74"><path d="M50 4 98 26 50 48 2 26z" fill="#0b2a20" stroke="#ffc572" stroke-width="3" stroke-linejoin="round"/>' +
+    '<path d="M24 36v18c0 7 12 13 26 13s26-6 26-13V36L50 48z" fill="#06231a" stroke="#ffc572" stroke-width="2.5"/>' +
+    '<path d="M50 26 82 34v22" fill="none" stroke="#e3a11b" stroke-width="2.5" stroke-linecap="round"/>' +
+    '<path d="M78 56h8l-2 13h-4z" fill="#e3a11b"/><circle cx="50" cy="26" r="3.5" fill="#ffc572"/></svg>';
+
+  function lancarCapelos(qtd) {
+    var area = document.getElementById("capelos");
+    if (!area || reduced || !area.animate) return;
+    var W = window.innerWidth, H = window.innerHeight;
+    qtd = qtd || (W < 700 ? 9 : 16);
+    for (var i = 0; i < qtd; i++) {
+      (function (k) {
+        var el = document.createElement("div");
+        el.className = "capelo";
+        el.style.setProperty("--t", Math.round(rand(46, W < 700 ? 64 : 84)) + "px");
+        el.innerHTML = CAPELO_SVG;
+        area.appendChild(el);
+        var x0 = rand(W * .1, W * .9), x1 = x0 + rand(-W * .18, W * .18), x2 = x1 + rand(-W * .1, W * .1);
+        var topo = rand(H * .06, H * .4), giro = rand(-540, 540), dur = rand(2400, 3400);
+        var a = el.animate([
+          { transform: "translate(" + x0 + "px," + (H + 80) + "px) rotate(0deg)", easing: "cubic-bezier(.2,.7,.4,1)" },
+          { transform: "translate(" + x1 + "px," + topo + "px) rotate(" + giro * .5 + "deg)", offset: .45, easing: "cubic-bezier(.5,0,.8,.4)" },
+          { transform: "translate(" + x2 + "px," + (H + 120) + "px) rotate(" + giro + "deg)" }
+        ], { duration: dur, delay: k * 70, fill: "both" });
+        a.onfinish = function () { el.remove(); };
+      })(i);
+    }
+  }
+  var capelosNaAbertura = false;
+
   function finalizar() {
     relogios.forEach(clearTimeout);
     relogios = [];
@@ -882,6 +917,7 @@
     raiz.classList.add("is-pulado", "is-revelado");
     vidro.desligar();
     acenderCena();
+    if (!capelosNaAbertura) { capelosNaAbertura = true; setTimeout(function () { lancarCapelos(); }, 500); }
   }
 
   /* A abertura da Unicive:
@@ -898,7 +934,8 @@
     depois(600,  function () { raiz.classList.add("fase-friday"); });
     depois(1000, function () { raiz.classList.add("fase-simbolo"); acenderCena(); });
     depois(1500, function () { raiz.classList.add("is-revelado"); });
-    depois(3200, finalizar);
+    depois(2300, function () { capelosNaAbertura = true; lancarCapelos(); });
+    depois(4200, finalizar);
   }
 
   var botaoPular = document.getElementById("pular");
@@ -1123,6 +1160,7 @@
             if (linha) linha.textContent = "Levando você para o canal da CPPEM no YouTube…";
           }
           successEl.hidden = false;
+          lancarCapelos(12);
           successEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
         }
 
