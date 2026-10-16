@@ -1154,7 +1154,7 @@ html.fase-simbolo .parceria__fio   { animation: fio-desenha .5s var(--ease) 2.25
   .hero__cena { position: relative; z-index: 2; }
 
   /* marca: pequena, no canto direito, ao lado do título */
-  .leao { position: absolute; left: auto; right: var(--gutter); top: 2.3rem; transform: none; width: 64px; margin: 0; opacity: 1; z-index: 1; }
+  .leao { position: absolute; left: auto; right: var(--gutter); top: .5rem; transform: none; width: 64px; margin: 0; opacity: 1; z-index: 1; }
   .leao__halo, .parceria, .marca-uni__nome { display: none; }
 
   .briefing { display: none; }
@@ -1178,4 +1178,64 @@ html.fase-simbolo .parceria__fio   { animation: fio-desenha .5s var(--ease) 2.25
   .field input { min-height: 48px; padding: .7rem .9rem; }
   .form .btn { min-height: 52px; }
   .inscricao__agenda { margin-top: .7rem; padding-top: .6rem; }
+}
+
+/* 1A · no celular a etiqueta "Ao vivo no YouTube" sai do hero e a barra
+   do topo assume a função: "Ao vivo no YouTube · Seg · 09/11 · 19h45" */
+.topbar__yt { display: none; }
+@media (max-width: 700px) {
+  .hero .alerta { display: none; }
+  .topbar__nome { display: none; }
+  .topbar__yt { display: inline; }
+}
+
+/* =========================================================
+   2A · UNICIVE × CPPEM
+   Os dois emblemas do mesmo tamanho, lado a lado, com um "×" dourado
+   fino no meio. O símbolo da Unicive deixa de ocupar o bloco inteiro.
+   ========================================================= */
+.marca-uni {
+  aspect-ratio: auto; width: clamp(250px, 21vw, 310px); top: 44%; left: 49%;
+  display: flex; align-items: center; justify-content: space-between; gap: .6rem;
+}
+.marca-uni .bf__leao { position: relative; inset: auto; flex: 0 0 41%; aspect-ratio: 941 / 1074; }
+.leao-cppem { position: relative; flex: 0 0 40%; }
+.leao-cppem img { display: block; width: 100%; filter: drop-shadow(0 18px 40px rgba(0, 0, 0, .5)) drop-shadow(0 0 40px rgba(255, 197, 114, .22)); }
+.marca-uni .leao__halo { width: 135%; top: 50%; }
+.parceiro-x { position: relative; flex: 0 0 34px; height: 34px; }
+.parceiro-x i {
+  position: absolute; left: 50%; top: 50%; width: 2px; height: 100%; margin: -17px 0 0 -1px;
+  background: linear-gradient(180deg, transparent, var(--gold-hot) 25%, var(--gold-hot) 75%, transparent);
+  transform: rotate(45deg);
+}
+.parceiro-x i + i { transform: rotate(-45deg); }
+.parceria { top: calc(100% + 1.6rem); }
+
+/* abertura: Unicive se monta, depois o leão chega e o × se desenha */
+html.is-abertura .leao-cppem { opacity: 0; }
+html.is-abertura .parceiro-x i { opacity: 0; }
+html.fase-simbolo .leao-cppem { animation: leao-chega .9s var(--freada) 1.35s both; }
+html.fase-simbolo .parceiro-x i { animation: x-risca .35s var(--ease) 1.9s both; }
+html.fase-simbolo .parceiro-x i + i { animation-delay: 2.05s; }
+@keyframes leao-chega {
+  0%   { opacity: 0; transform: translateX(70px) scale(.85); filter: brightness(2); }
+  100% { opacity: 1; transform: none; filter: brightness(1); }
+}
+@keyframes x-risca { from { opacity: 1; clip-path: inset(0 0 100% 0); } to { opacity: 1; clip-path: inset(0 0 0 0); } }
+/* um reflexo atravessa o leão de vez em quando, como no título */
+.leao-cppem::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  -webkit-mask: url("assets/leao-cppem-ouro.webp") center / contain no-repeat;
+          mask: url("assets/leao-cppem-ouro.webp") center / contain no-repeat;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 246, 220, .6) 50%, transparent 62%) no-repeat;
+  background-size: 250% 100%;
+  animation: reflexo 6s var(--ease) 3s infinite;
+}
+
+@media (max-width: 1240px) { .marca-uni { width: clamp(230px, 21vw, 270px); } }
+@media (max-width: 700px) {
+  /* no celular os dois emblemas ficam pequenos, juntos, no canto */
+  .leao.marca-uni { top: .5rem; left: auto; width: 128px; gap: .2rem; }
+  .parceiro-x { flex-basis: 16px; height: 16px; }
+  .parceiro-x i { margin-top: -8px; }
 }
