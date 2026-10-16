@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+  <!-- Google Tag Manager
+       Precisa ser o primeiro script do <head> — é ele que carrega a PixelX. -->
+  <script>(function(w,d,s,l){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'?l='+l:'';j.async=true;j.src=
+  'https://sgtm.cppem.com.br/metrics/'+dl;f.parentNode.insertBefore(j,f);})
+  (window,document,'script','dataLayer');</script>
+  <!-- End Google Tag Manager -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Black Friday Unicive · 09/11 às 19h45, ao vivo no YouTube</title>
+<meta name="description" content="Black Friday da Unicive Caruaru: uma live só, segunda-feira, 09/11, às 19h45, no YouTube da CPPEM. As condições para começar sua graduação reconhecida pelo MEC, com nota máxima, são reveladas ao vivo. Entre na lista VIP.">
+<meta name="theme-color" content="#04140f">
+
+<link rel="icon" href="assets/favicon.ico" sizes="48x48">
+<link rel="icon" href="assets/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/favicon-192.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Unicive Caruaru">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Black Friday Unicive · 09/11 às 19h45, ao vivo no YouTube">
+<meta property="og:description" content="A sua graduação reconhecida pelo MEC com a condição do ano, revelada numa live só. Entre na lista VIP e receba o lembrete no WhatsApp.">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Lexend:wght@600;700;800;900&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<!-- A ABERTURA decide ANTES do primeiro paint se vai tocar: decidir no
+     script.js (fim do <body>) faria o hero piscar pronto e depois sumir.
+     Toca uma vez por sessão. ?abertura=0 pula, ?abertura=1 força.
+     A trava dos 7s é a rede de segurança: se o script.js não carregar, a
+     página não pode ficar presa sem conteúdo. -->
+<script>
+  (function (d) {
+    var raiz = d.documentElement, qs = location.search, visto = false;
+    try { visto = sessionStorage.getItem("bf-unicive-abertura") === "1"; } catch (e) {}
+    var calmo = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var tocar = /abertura=1/.test(qs) || (!visto && !calmo && !/abertura=0/.test(qs));
+    raiz.classList.add("js", tocar ? "is-abertura" : "is-pulado");
+    if (tocar) setTimeout(function () {
+      if (raiz.classList.contains("is-abertura") && !raiz.classList.contains("is-rodando")) {
+        raiz.classList.remove("is-abertura"); raiz.classList.add("is-pulado");
+      }
+    }, 7000);
+  })(document);
+</script>
+</head>
+<body>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://sgtm.cppem.com.br/ns.html?id=GTM-PJ379FLQ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+<!-- ================= TOPBAR ================= -->
+<div class="topbar" role="note">
+  <span class="topbar__dot" aria-hidden="true"></span>
+  <span data-fase-so="antes">Black Friday Unicive · <b>09/11 às 19h45</b><span class="topbar__extra"> · ao vivo no YouTube</span></span>
+  <span data-fase-so="ao-vivo" hidden><b>Estamos ao vivo agora</b> · venha para o YouTube</span>
+  <span data-fase-so="depois" hidden>A live acabou · <b>assista à gravação no canal</b></span>
+</div>
+
+<!-- =========================================================
+     HERO + ABERTURA
+     Título à esquerda, o símbolo da Unicive no centro e a lista VIP à
+     direita. Na abertura as letras do BLACK caem, as do FRIDAY sobem e
+     as três peças do símbolo se encaixam (o símbolo é desenhado em SVG
+     justamente para as peças poderem se mover separadas).
+     O <h1> é lido como "Black Friday Unicive".
+     ========================================================= -->
+<section class="hero" id="topo">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__grao" aria-hidden="true"></div>
+  <canvas class="hero__vidro" id="vidro" aria-hidden="true"></canvas>
+  <canvas class="hero__fogo" id="fogo" aria-hidden="true"></canvas>
+  <canvas class="hero__raios" id="raios" aria-hidden="true"></canvas>
+  <div class="hero__clarao" id="clarao" aria-hidden="true"></div>
+
+  <div class="hero__stage">
+    <div class="container hero__grid">
+
+      <!-- ---------- o símbolo da Unicive: peça central ---------- -->
+      <div class="leao marca-uni" id="bfMarca" aria-hidden="true">
+        <i class="leao__halo"></i>
+        <span class="bf__leao">
+          <svg class="simbolo" viewBox="0 0 941 1074">
+            <defs>
+              <linearGradient id="uni-ouro" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ffe0a6"/>
+                <stop offset=".55" stop-color="#ffc572"/>
+                <stop offset="1" stop-color="#e3a11b"/>
+              </linearGradient>
+              <linearGradient id="uni-verde" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#1fb388"/>
+                <stop offset=".55" stop-color="#0a7d5f"/>
+                <stop offset="1" stop-color="#02664f"/>
+              </linearGradient>
+            </defs>
+            <path class="peca peca--a" fill="url(#uni-ouro)" d="M0 133 H399 V455 A80 80 0 0 1 319 535 H0 Z"/>
+            <path class="peca peca--b" fill="url(#uni-ouro)" d="M0 675 H319 A80 80 0 0 1 399 755 V1074 A399 399 0 0 1 0 675 Z"/>
+            <path class="peca peca--folha" fill="url(#uni-verde)" d="M941 0 V540 A399 399 0 0 1 542 940 V400 A399 399 0 0 1 941 0 Z"/>
+          </svg>
+        </span>
+        <img class="marca-uni__nome" src="assets/unicive-nome.webp" alt="" width="900" height="124">
+      </div>
+
+      <!-- ---------- coluna do título ---------- -->
+      <div class="hero__cena">
+        <span class="alerta anim d1">
+          <i class="alerta__ponto" aria-hidden="true"></i>
+          <b data-fase-so="antes">Ao vivo no YouTube</b>
+          <b data-fase-so="ao-vivo" hidden>Ao vivo agora</b>
+          <b data-fase-so="depois" hidden>Live encerrada</b>
+          <i class="alerta__sep" aria-hidden="true"></i>
+          <span>Seg · 09/11 · 19h45</span>
+        </span>
+
+        <!-- cada letra é um <i> com --i (ordem de entrada) -->
+        <h1 class="bf" aria-label="Black Friday Unicive">
+          <span class="bf__black" id="bfBlack" aria-hidden="true"><span class="bf__in"><i style="--i:0">B</i><i style="--i:1">L</i><i style="--i:2">A</i><i style="--i:3">C</i><i style="--i:4">K</i></span></span>
+          <span class="bf__friday" id="bfFriday" aria-hidden="true"><span class="bf__in"><i style="--i:0">F</i><i style="--i:1">R</i><i style="--i:2">I</i><i style="--i:3">D</i><i style="--i:4">A</i><i style="--i:5">Y</i></span></span>
+        </h1>
+
+        <p class="bf__assina anim d1">Unicive <i></i> Caruaru–PE</p>
+
+        <p class="hero__sub anim d2">
+          <mark>A condição do ano</mark> para começar a sua
+          <em>graduação reconhecida pelo MEC</em>, revelada numa live só.
+        </p>
+
+        <div class="hero__linha anim d3">
+          <div class="cdown cdown--hero" id="cdownHero" role="timer" aria-live="off" aria-label="Contagem regressiva para a live">
+            <div class="cdown__box"><b data-c="d">00</b><span>dias</span></div>
+            <div class="cdown__box"><b data-c="h">00</b><span>horas</span></div>
+            <div class="cdown__box"><b data-c="m">00</b><span>min</span></div>
+            <div class="cdown__box"><b data-c="s">00</b><span>seg</span></div>
+          </div>
+          <a class="btn btn--ghost btn--yt" data-youtube-canal data-cta="hero-youtube" href="https://www.youtube.com/@cppemconcursos?sub_confirmation=1" target="_blank" rel="noopener">
+            <svg class="ico-yt" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5C0 8.4 0 12 0 12s0 3.6.5 5.5a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.5.5-5.5s0-3.6-.5-5.5zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+            <span>Inscrever no canal</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ---------- coluna do formulário ----------
+           NOMENCLATURA CANÔNICA (TRACKING.md §6.0) — mesma da livepmpe:
+           · o id do <form> é único na página e é o identificador no painel;
+           · name="name" / "phone" / "email", e .pxa_mask_phone no telefone. -->
+      <div class="inscricao anim d3" id="inscricao">
+
+        <!-- selo: faixa colada no topo do cartão -->
+        <div class="selo-card" role="note" aria-label="Nota máxima no MEC. Condição de Black Friday revelada só na live">
+          <span class="selo-card__icone" aria-hidden="true">5★</span>
+          <span class="selo-card__rot" aria-hidden="true">Selo Black Unicive</span>
+          <b class="selo-card__titulo" aria-hidden="true">Nota máxima no MEC</b>
+          <ul class="selo-card__lista" aria-hidden="true">
+            <li>Diploma válido no Brasil</li>
+            <li>Condição só na live</li>
+          </ul>
+        </div>
+
+        <div class="inscricao__card">
+          <div class="inscricao__topo">
+            <span class="inscricao__tag">Lista VIP · gratuita</span>
+            <span class="inscricao__tempo" id="formTempo" aria-hidden="true">--</span>
+          </div>
+
+          <h2 class="inscricao__titulo">Seu diploma <span class="gold nowrap">começa aqui</span></h2>
+          <p class="inscricao__lead">
+            As condições aparecem às <b>19h45 de 09/11</b>. Quem está na lista recebe
+            o lembrete e o link da live no WhatsApp.
+          </p>
+
+          <form class="form" name="lead_form" id="bf-unicive-form" novalidate data-fase-so="antes">
+            <div class="field">
+              <label class="sr-only" for="nome">Nome</label>
+              <input type="text" id="nome" name="name" autocomplete="name" placeholder="Seu nome" required>
+              <span class="err" data-error-for="nome"></span>
+            </div>
+            <div class="field">
+              <label class="sr-only" for="telefone">WhatsApp com DDD</label>
+              <input type="text" id="telefone" name="phone" class="pxa_mask_phone" inputmode="tel" autocomplete="tel" placeholder="WhatsApp com DDD" required>
+              <span class="err" data-error-for="telefone"></span>
+            </div>
+            <div class="field">
+              <label class="sr-only" for="email">E-mail</label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="Seu melhor e-mail" required>
+              <span class="err" data-error-for="email"></span>
+            </div>
+
+            <button type="submit" class="btn btn--gold btn--lg btn--block shine" id="bf-unicive-submit">
+              <span>Entrar na lista VIP</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+
+            <p class="form__legal">
+              Ao se inscrever, você aceita receber os avisos da Black Friday Unicive por WhatsApp e e-mail.
+              <a href="https://cppem.com.br/politica-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a>.
+            </p>
+
+            <div class="success" id="form-success" role="status" hidden>
+              <b>Você está na lista!</b>
+              <span>Levando você para o grupo do WhatsApp…</span>
+            </div>
+          </form>
+
+          <div class="inscricao__live" data-fase-so="ao-vivo" hidden>
+            <a class="btn btn--gold btn--lg btn--block shine" data-youtube-live data-cta="form-live" href="https://www.youtube.com/@cppemconcursos/live" target="_blank" rel="noopener">
+              <span>Assistir ao vivo agora</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+          <div class="inscricao__live" data-fase-so="depois" hidden>
+            <a class="btn btn--ghost btn--lg btn--block" data-cta="form-depois" href="https://www.youtube.com/@cppemconcursos/streams" target="_blank" rel="noopener">
+              <span>Ver a gravação no canal</span>
+            </a>
+          </div>
+
+          <p class="inscricao__agenda">
+            <a data-agenda="google" href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              Salvar a live no Google Agenda
+            </a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <button type="button" class="hero__pular" id="pular" tabindex="-1">
+    Pular
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </button>
+</section>
+
+<!-- ================= FAIXAS ================= -->
+<div class="fitas" aria-hidden="true">
+  <div class="fita fita--ouro">
+    <div class="fita__track">
+      <span>Black Friday Unicive</span><span>09/11</span><span>19h45</span><span>Ao vivo no YouTube</span><span>Graduação EAD</span>
+      <span>Black Friday Unicive</span><span>09/11</span><span>19h45</span><span>Ao vivo no YouTube</span><span>Graduação EAD</span>
+    </div>
+  </div>
+  <div class="fita fita--prata">
+    <div class="fita__track fita__track--rev">
+      <span>Nota máxima no MEC</span><span>Diploma válido em todo o Brasil</span><span>Feita para concurseiros</span><span>Caruaru–PE</span>
+      <span>Nota máxima no MEC</span><span>Diploma válido em todo o Brasil</span><span>Feita para concurseiros</span><span>Caruaru–PE</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- ================= MEC =================
+     Os fatos que sustentam a oferta: reconhecimento, nota e validade.
+     Mesmas afirmações da página de captura da Unicive. -->
+<section class="section mec" id="mec" aria-labelledby="mec-title">
+  <div class="container mec__grid">
+    <a class="mec__selo" data-reveal href="https://emec.mec.gov.br/emec/consulta-cadastro/detalhes-ies/d96957f455f6405d14c6542552b0f6eb/MzY0OQ==" target="_blank" rel="noopener noreferrer" aria-label="Nota máxima 5 no MEC — consultar no e-MEC">
+      <img src="assets/nota-maxima.webp" alt="Nota máxima 5 no MEC" width="882" height="485" loading="lazy" decoding="async">
+      <span class="mec__consulta">Consultar no e-MEC ↗</span>
+    </a>
+    <div data-reveal>
+      <span class="eyebrow">Por que a Unicive</span>
+      <h2 class="section__title section__title--left" id="mec-title">Um diploma que <span class="gold">vale no Brasil inteiro</span></h2>
+      <ul class="mec__lista">
+        <li><b>Reconhecida pelo MEC</b><span>Instituição certificada, com o diploma válido em todo o território nacional.</span></li>
+        <li><b>Nota máxima</b><span>Avaliação 5 no MEC — a segurança de estudar numa instituição séria.</span></li>
+        <li><b>Feita para concurso</b><span>Serve para concursos de nível superior, provas de títulos e para o mercado.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MURAL DE FORMATURA =================
+     Fotos reais de formados, em polaroides presas no mural. Duas faixas
+     em sentidos opostos, cada foto com inclinação própria (--r). Cada
+     faixa repete o conjunto três vezes e anda 1/3 da largura. -->
+<section class="section section--alt mural" id="formados" aria-labelledby="formados-title">
+  <div class="container">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow">Mural de formatura</span>
+      <h2 class="section__title" id="formados-title">Eles já estão com o <span class="gold">diploma na mão</span></h2>
+    </div>
+  </div>
+  <div class="polaroides" data-reveal>
+    <ul class="polaroides__faixa" role="list">
+      <li class="polaroide" style="--r:-0.4deg;--y:-3px"><img src="assets/formados/formado-01.webp" width="640" height="427" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Diploma na mão!</span></li>
+      <li class="polaroide" style="--r:-3.6deg;--y:7px"><img src="assets/formados/formado-02.webp" width="480" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Turma Unicive</span></li>
+      <li class="polaroide" style="--r:-4.9deg;--y:0px"><img src="assets/formados/formado-04.webp" width="427" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Nível superior ✓</span></li>
+      <li class="polaroide" style="--r:4.0deg;--y:-8px"><img src="assets/formados/formado-06.webp" width="359" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Turma Unicive</span></li>
+      <li class="polaroide" style="--r:0.5deg;--y:2px"><img src="assets/formados/formado-08.webp" width="426" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Diploma na mão!</span></li>
+      <li class="polaroide" style="--r:-4.6deg;--y:-2px" aria-hidden="true"><img src="assets/formados/formado-01.webp" width="640" height="427" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Diploma na mão!</span></li>
+      <li class="polaroide" style="--r:2.0deg;--y:-1px" aria-hidden="true"><img src="assets/formados/formado-02.webp" width="480" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Turma Unicive</span></li>
+      <li class="polaroide" style="--r:2.3deg;--y:-7px" aria-hidden="true"><img src="assets/formados/formado-04.webp" width="427" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Nível superior ✓</span></li>
+      <li class="polaroide" style="--r:-2.6deg;--y:-8px" aria-hidden="true"><img src="assets/formados/formado-06.webp" width="359" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Turma Unicive</span></li>
+      <li class="polaroide" style="--r:0.1deg;--y:8px" aria-hidden="true"><img src="assets/formados/formado-08.webp" width="426" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Diploma na mão!</span></li>
+      <li class="polaroide" style="--r:0.9deg;--y:5px" aria-hidden="true"><img src="assets/formados/formado-01.webp" width="640" height="427" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Diploma na mão!</span></li>
+      <li class="polaroide" style="--r:-1.2deg;--y:5px" aria-hidden="true"><img src="assets/formados/formado-02.webp" width="480" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Turma Unicive</span></li>
+      <li class="polaroide" style="--r:-4.0deg;--y:-4px" aria-hidden="true"><img src="assets/formados/formado-04.webp" width="427" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Nível superior ✓</span></li>
+      <li class="polaroide" style="--r:1.7deg;--y:5px" aria-hidden="true"><img src="assets/formados/formado-06.webp" width="359" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Turma Unicive</span></li>
+      <li class="polaroide" style="--r:-0.8deg;--y:-8px" aria-hidden="true"><img src="assets/formados/formado-08.webp" width="426" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Diploma na mão!</span></li>
+    </ul>
+    <ul class="polaroides__faixa polaroides__faixa--volta" role="list">
+      <li class="polaroide" style="--r:-2.3deg;--y:-6px"><img src="assets/formados/formado-01.webp" width="640" height="427" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Formado com orgulho</span></li>
+      <li class="polaroide" style="--r:-2.2deg;--y:6px"><img src="assets/formados/formado-06.webp" width="359" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Agora é oficial!</span></li>
+      <li class="polaroide" style="--r:-3.0deg;--y:8px"><img src="assets/formados/formado-04.webp" width="427" height="640" loading="lazy" decoding="async" alt="Formado(a) da Unicive com o diploma"><span class="polaroide__legenda">Formada com orgulho</span></li>
+      <li class="polaroide" style="--r:3.8deg;--y:-9px" aria-hidden="true"><img src="assets/formados/formado-03.webp" width="640" height="427" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Diploma na mão!</span></li>
+      <li class="polaroide" style="--r:-1.2deg;--y:-0px" aria-hidden="true"><img src="assets/formados/formado-08.webp" width="426" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Turma Unicive</span></li>
+      <li class="polaroide" style="--r:-4.8deg;--y:-2px" aria-hidden="true"><img src="assets/formados/formado-01.webp" width="640" height="427" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Formado com orgulho</span></li>
+      <li class="polaroide" style="--r:4.1deg;--y:-8px" aria-hidden="true"><img src="assets/formados/formado-06.webp" width="359" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Agora é oficial!</span></li>
+      <li class="polaroide" style="--r:1.0deg;--y:-8px" aria-hidden="true"><img src="assets/formados/formado-04.webp" width="427" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Formada com orgulho</span></li>
+      <li class="polaroide" style="--r:0.8deg;--y:8px" aria-hidden="true"><img src="assets/formados/formado-03.webp" width="640" height="427" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Diploma na mão!</span></li>
+      <li class="polaroide" style="--r:-3.0deg;--y:-10px" aria-hidden="true"><img src="assets/formados/formado-08.webp" width="426" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Turma Unicive</span></li>
+      <li class="polaroide" style="--r:-4.2deg;--y:1px" aria-hidden="true"><img src="assets/formados/formado-01.webp" width="640" height="427" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Formado com orgulho</span></li>
+      <li class="polaroide" style="--r:-4.8deg;--y:-8px" aria-hidden="true"><img src="assets/formados/formado-06.webp" width="359" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Agora é oficial!</span></li>
+      <li class="polaroide" style="--r:-0.0deg;--y:8px" aria-hidden="true"><img src="assets/formados/formado-04.webp" width="427" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Formada com orgulho</span></li>
+      <li class="polaroide" style="--r:-0.8deg;--y:-2px" aria-hidden="true"><img src="assets/formados/formado-03.webp" width="640" height="427" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Diploma na mão!</span></li>
+      <li class="polaroide" style="--r:1.4deg;--y:-8px" aria-hidden="true"><img src="assets/formados/formado-08.webp" width="426" height="640" loading="lazy" decoding="async" alt=""><span class="polaroide__legenda">Turma Unicive</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= CURSOS LACRADOS =================
+     Os principais cursos da página de captura da Unicive. O preço de cada
+     um é o segredo da live. Se algum curso não entrar, remova o <article>. -->
+<section class="section" id="cursos" aria-labelledby="cursos-title">
+  <div class="container">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow">Graduações EAD</span>
+      <h2 class="section__title" id="cursos-title">Escolha o curso. <span class="gold">O preço sai na live.</span></h2>
+    </div>
+    <div class="cursos">
+      <article class="curso" data-reveal>
+        <span class="curso__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V10M19 21V10M9 21V10M15 21V10M4 10h16L12 4z"/></svg></span>
+        <h3>Serviços Jurídicos</h3>
+        <span class="curso__off" aria-hidden="true">??<small>% off</small></span>
+        <span class="curso__tag">Preço na live</span>
+      </article>
+      <article class="curso" data-reveal>
+        <span class="curso__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 7.6 7 9 4-1.4 7-4.5 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <h3>Segurança Privada</h3>
+        <span class="curso__off" aria-hidden="true">??<small>% off</small></span>
+        <span class="curso__tag">Preço na live</span>
+      </article>
+      <article class="curso" data-reveal>
+        <span class="curso__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 20v-1a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v1"/><circle cx="9.5" cy="8" r="3.5"/><path d="M18 14a4 4 0 0 1 3 3.9V19M17 5.2a3.5 3.5 0 0 1 0 6.6"/></svg></span>
+        <h3>Recursos Humanos</h3>
+        <span class="curso__off" aria-hidden="true">??<small>% off</small></span>
+        <span class="curso__tag">Preço na live</span>
+      </article>
+      <article class="curso" data-reveal>
+        <span class="curso__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18.5" r="1.8"/><circle cx="17" cy="18.5" r="1.8"/></svg></span>
+        <h3>Logística</h3>
+        <span class="curso__off" aria-hidden="true">??<small>% off</small></span>
+        <span class="curso__tag">Preço na live</span>
+      </article>
+      <article class="curso" data-reveal>
+        <span class="curso__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15 8a5 5 0 0 1 0 8"/></svg></span>
+        <h3>Marketing</h3>
+        <span class="curso__off" aria-hidden="true">??<small>% off</small></span>
+        <span class="curso__tag">Preço na live</span>
+      </article>
+      <article class="curso" data-reveal>
+        <span class="curso__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 7.6 7 9 4-1.4 7-4.5 7-9V6z"/><path d="m12 8 1.1 2.3 2.5.3-1.8 1.7.4 2.5L12 13.9l-2.2 1.2.4-2.5-1.8-1.7 2.5-.3z"/></svg></span>
+        <h3>Gestão da Atividade Policial</h3>
+        <span class="curso__off" aria-hidden="true">??<small>% off</small></span>
+        <span class="curso__tag">Preço na live</span>
+      </article>
+      <article class="curso" data-reveal>
+        <span class="curso__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><path d="m7 12 3-3 2.5 2.5L17 7.5"/></svg></span>
+        <h3>Marketing Digital</h3>
+        <span class="curso__off" aria-hidden="true">??<small>% off</small></span>
+        <span class="curso__tag">Preço na live</span>
+      </article>
+      <article class="curso" data-reveal>
+        <span class="curso__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M21 21l-5.2-5.2"/><path d="M10.5 7.5v3l2 1.2"/></svg></span>
+        <h3>Criminologia</h3>
+        <span class="curso__off" aria-hidden="true">??<small>% off</small></span>
+        <span class="curso__tag">Preço na live</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTAGEM + CTA FINAL ================= -->
+<section class="section section--bomba" id="contagem" aria-labelledby="contagem-title">
+  <div class="container">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow">Contagem regressiva</span>
+      <h2 class="section__title" id="contagem-title">Falta pouco para a <span class="gold">sua matrícula</span></h2>
+    </div>
+
+    <div class="bomba" data-reveal>
+      <div class="cdown cdown--big" id="cdownBig" role="timer" aria-live="off" aria-label="Contagem regressiva para a live">
+        <div class="cdown__box"><b data-c="d">00</b><span>dias</span></div>
+        <div class="cdown__box"><b data-c="h">00</b><span>horas</span></div>
+        <div class="cdown__box"><b data-c="m">00</b><span>min</span></div>
+        <div class="cdown__box"><b data-c="s">00</b><span>seg</span></div>
+      </div>
+
+      <p class="bomba__nota" data-fase-so="antes">Segunda-feira, <b>09 de novembro, às 19h45</b>, ao vivo no YouTube.</p>
+      <p class="bomba__nota" data-fase-so="ao-vivo" hidden><b>Começou.</b> A live está no ar agora.</p>
+      <p class="bomba__nota" data-fase-so="depois" hidden>A live acabou. A gravação fica no canal da CPPEM.</p>
+
+      <a class="btn btn--gold btn--lg shine" href="#inscricao" data-ir-form data-cta="contagem" data-fase-so="antes">
+        <span>Garantir meu lugar na lista VIP</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn--gold btn--lg shine" data-youtube-live data-cta="contagem-live" href="https://www.youtube.com/@cppemconcursos/live" target="_blank" rel="noopener" data-fase-so="ao-vivo" hidden>
+        <span>Assistir ao vivo agora</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= RODAPÉ ================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__marca footer__marca--uni">
+          <img src="assets/unicive-nome.webp" alt="Unicive" width="900" height="124" loading="lazy">
+        </div>
+        <p class="footer__quote">Graduação EAD reconhecida pelo MEC, com nota máxima, válida em todo o Brasil.</p>
+      </div>
+
+      <div class="footer__social">
+        <a href="https://www.youtube.com/@cppemconcursos" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5C0 8.4 0 12 0 12s0 3.6.5 5.5a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.5.5-5.5s0-3.6-.5-5.5zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer__bar">
+      <span>© <span id="year">2026</span> <strong>Cppem Colégio e Cursos LTDA.</strong> · Caruaru, Pernambuco · CNPJ 57.347.872/0001-48</span>
+      <a href="https://cppem.com.br/politica-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= BARRA FIXA (MOBILE) ================= -->
+<div class="dock" id="dock">
+  <div class="dock__info">
+    <b>Black Friday · 09/11</b>
+    <span id="dockTempo">19h45 · ao vivo</span>
+  </div>
+  <a class="btn btn--gold" href="#inscricao" data-ir-form data-cta="dock" data-fase-so="antes">Lista VIP</a>
+  <a class="btn btn--gold" data-youtube-live data-cta="dock-live" href="https://www.youtube.com/@cppemconcursos/live" target="_blank" rel="noopener" data-fase-so="ao-vivo" hidden>Assistir</a>
+</div>
+
+<canvas class="brasas" id="brasas" aria-hidden="true"></canvas>
+
+<script src="script.js"></script>
+</body>
+</html>
