@@ -861,11 +861,11 @@ html.js [data-reveal].is-in { opacity: 1; transform: none; }
 .marca-uni .bf__leao::after { display: none; }   /* o reflexo era mascarado pelo brasão do Colégio */
 .simbolo { display: block; width: 100%; height: 100%; overflow: visible; }
 .peca { transform-box: fill-box; transform-origin: center; }
-.marca-uni__nome { position: absolute; left: 0; right: 0; top: calc(100% + 1.4rem); width: 86%; margin: 0 auto; opacity: .95; }
+
 
 /* abertura: as três peças chegam de fora e se encaixam */
 html.is-abertura .marca-uni .bf__leao { opacity: 1; }
-html.is-abertura .peca, html.is-abertura .marca-uni__nome { opacity: 0; }
+html.is-abertura .peca { opacity: 0; }
 html.fase-simbolo .peca--a     { animation: peca-a .95s cubic-bezier(.2, .9, .25, 1) both; }
 html.fase-simbolo .peca--b     { animation: peca-b .95s cubic-bezier(.2, .9, .25, 1) .12s both; }
 html.fase-simbolo .peca--folha { animation: peca-folha 1s cubic-bezier(.2, .9, .25, 1) .24s both; }
@@ -879,7 +879,6 @@ html.fase-simbolo .marca-uni .bf__leao { animation: encaixe .8s var(--ease) 1.12
   30%  { filter: drop-shadow(0 18px 40px rgba(0, 0, 0, .5)) drop-shadow(0 0 70px rgba(255, 220, 160, .7)) brightness(1.35); transform: scale(1.04); }
   100% { filter: drop-shadow(0 18px 40px rgba(0, 0, 0, .5)) drop-shadow(0 0 46px rgba(255, 197, 114, .2)) brightness(1); transform: scale(1); }
 }
-html.fase-simbolo .marca-uni__nome { animation: sobe .7s var(--freada) 1.15s both; }
 html.fase-simbolo .leao__halo { animation: halo-acende 1.3s var(--ease) .7s both; }
 
 /* ---------- MEC ---------- */
@@ -1000,7 +999,6 @@ html.fase-simbolo .peca--folha { animation: folha-cresce 1.25s cubic-bezier(.3, 
   100% { opacity: 1; transform: none; }
 }
 html.fase-simbolo .marca-uni .bf__leao { animation: encaixe .8s var(--ease) 1.55s both; }
-html.fase-simbolo .marca-uni__nome { animation: sobe .7s var(--freada) 1.6s both; }
 
 /* ---------- 2 · o card chega enrolado como diploma e desenrola ----------
    O card é recortado de 50% (fechado) até 0; os dois canudos acompanham
@@ -1111,4 +1109,73 @@ html.js .mural__quadro .polaroide::before { opacity: 0; transform: translateX(-5
   .capelos, .canudo, .diploma-fita { display: none; }
   .carimbo-mec { opacity: 1; }
   html.js .mural__quadro .polaroide, html.js .mural__quadro .polaroide::before { opacity: 1; }
+}
+
+/* ---------- parceria Unicive × CPPEM ----------
+   As duas marcas dividem a linha embaixo do símbolo: "unicive" vem da
+   esquerda, CPPEM da direita, e o fio dourado se desenha no encontro. */
+.parceria {
+  position: absolute; left: 50%; top: calc(100% + 1.3rem); transform: translateX(-50%);
+  display: flex; align-items: center; gap: .7rem; width: max-content;
+}
+.parceria__uni   { height: 22px; width: auto; }
+.parceria__cppem { height: 30px; width: auto; filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .4)); }
+.parceria__fio   { width: 1.5px; height: 30px; background: linear-gradient(180deg, transparent, var(--gold-hot), transparent); }
+
+html.is-abertura .parceria__uni, html.is-abertura .parceria__cppem { opacity: 0; }
+html.is-abertura .parceria__fio { transform: scaleY(0); }
+html.fase-simbolo .parceria__uni   { animation: parceria-esq .8s var(--freada) 1.7s both; }
+html.fase-simbolo .parceria__cppem { animation: parceria-dir .8s var(--freada) 1.7s both; }
+html.fase-simbolo .parceria__fio   { animation: fio-desenha .5s var(--ease) 2.25s both; }
+@keyframes parceria-esq { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: none; } }
+@keyframes parceria-dir { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: none; } }
+@keyframes fio-desenha  { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+/* depois, um reflexo passa de uma marca para a outra, de vez em quando */
+.parceria::after {
+  content: ""; position: absolute; inset: -6px -10px; pointer-events: none;
+  background: linear-gradient(100deg, transparent 40%, rgba(255, 240, 210, .35) 50%, transparent 60%) no-repeat;
+  background-size: 260% 100%; mix-blend-mode: screen;
+  animation: parceria-brilho 6s var(--ease) 3.5s infinite;
+}
+@keyframes parceria-brilho { 0%, 75% { background-position: 140% 0; } 100% { background-position: -40% 0; } }
+
+
+/* =========================================================
+   CELULAR: O FORMULÁRIO NA PRIMEIRA TELA
+   No celular o topo encolhe para o formulário aparecer já na primeira
+   tela: marca pequena no canto, título menor, sem contagem no hero (o
+   cartão e a barra fixa já mostram o tempo) e selo compacto.
+   ========================================================= */
+@media (max-width: 700px) {
+  html { --bf-mobile: 12.5vw; }
+  .hero { min-height: 0; }
+  .hero__stage { padding: calc(var(--topbar) + .9rem) 0 2rem; }
+  .hero__grid { gap: 1.1rem; }
+  .hero__cena { position: relative; z-index: 2; }
+
+  /* marca: pequena, no canto direito, ao lado do título */
+  .leao { position: absolute; left: auto; right: var(--gutter); top: 2.3rem; transform: none; width: 64px; margin: 0; opacity: 1; z-index: 1; }
+  .leao__halo, .parceria, .marca-uni__nome { display: none; }
+
+  .briefing { display: none; }
+  .alerta { margin-bottom: .7rem; font-size: .6rem; padding: .32rem .7rem; }
+  .bf { font-size: var(--bf-mobile, 12vw); }
+  .bf__assina { margin-top: .5rem; font-size: .66rem; letter-spacing: .22em; }
+  .hero__sub { margin-top: .5rem; font-size: .9rem; line-height: 1.5; }
+  .hero__linha { display: none; }
+
+  /* selo: uma linha só */
+  .selo-card { margin: 0 .5rem -10px; padding: .5rem .8rem; column-gap: .6rem; }
+  .selo-card__icone { width: 32px; height: 32px; font-size: .9rem; }
+  .selo-card__rot, .selo-card__lista { display: none; }
+  .selo-card__titulo { font-size: .95rem; white-space: nowrap; }
+
+  .inscricao__card { padding: 1.1rem 1rem 1rem; }
+  .inscricao__topo { margin-bottom: .6rem; padding-bottom: .6rem; }
+  .inscricao__titulo { font-size: 1.45rem; }
+  .inscricao__lead { margin: .35rem 0 .8rem; font-size: .82rem; line-height: 1.45; }
+  .form { gap: .5rem; }
+  .field input { min-height: 48px; padding: .7rem .9rem; }
+  .form .btn { min-height: 52px; }
+  .inscricao__agenda { margin-top: .7rem; padding-top: .6rem; }
 }
